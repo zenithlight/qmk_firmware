@@ -8,8 +8,6 @@ enum custom_keycodes {
     E_ACCNT,
 };
 
-
-
 enum layers {
     _BASE,
     _EXTEND,
@@ -24,6 +22,13 @@ enum layers {
 #define RMODS MO(_RMODS)
 
 #define ACCENT_CIRCUMFLEX 0x0302
+
+const key_override_t* key_overrides[] = {
+    &ko_make_with_layers(MOD_MASK_SHIFT, KC_HASH, KC_PERC, 1 << _BASE),
+    &ko_make_with_layers(MOD_MASK_SHIFT, GUIL_L , KC_1   , 1 << _BASE),
+    &ko_make_with_layers(MOD_MASK_SHIFT, GUIL_R , KC_2   , 1 << _BASE),
+    &ko_make_with_layers(MOD_MASK_SHIFT, KC_DQUO, KC_3   , 1 << _BASE),
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -173,12 +178,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 send_unicode_string("«");
             }
-            return false;
+//            return false;
         case GUIL_R:
             if (record->event.pressed) {
                 send_unicode_string("»");
             }
-            return false;
+//            return false;
         case E_ACCNT:
             if (record->event.pressed) {
                 if (shift_pressed) {
@@ -187,7 +192,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     send_unicode_string("é");
                 }
             }
-            return false;
+//            return false;
         case E_GRAVE:
             if (record->event.pressed) {
                 if (shift_pressed) {
@@ -196,7 +201,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     send_unicode_string("è");
                 }
             }
-            return false;
+//            return false;
         case A_GRAVE:
             if (record->event.pressed) {
                 if (shift_pressed) {
@@ -205,7 +210,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     send_unicode_string("à");
                 }
             }
-            return false;
+//            return false;
     }
     return true;
 }
